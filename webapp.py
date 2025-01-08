@@ -15,13 +15,26 @@ st.title('Model Prediction App')
 # Feature inputs
 st.header('Enter feature values:')
 gender = st.selectbox('Gender', ['Male', 'Female'])
-marital_status = st.selectbox('Marital Status', ['Single', 'Married'])
+marital_status = st.selectbox('Marital Status', ['Single', 'Married','Widowed'])
 age = st.number_input('Age', min_value=18, max_value=100, value=30)
-fatigue = st.slider('Fatigue', min_value=0, max_value=10, value=5)
-slowing = st.slider('Slowing', min_value=0, max_value=10, value=5)
-pain = st.slider('Pain', min_value=0, max_value=10, value=5)
-hygiene = st.slider('Hygiene', min_value=0, max_value=10, value=5)
-movement = st.slider('Movement', min_value=0, max_value=10, value=5)
+fatigue = st.text_input('Fatigue', value="0.0363237389187373")
+slowing = st.text_input('Slowing', value="0.5808079689048639")
+pain = st.text_input('Pain', value="0.0053555198838411")
+hygiene = st.text_input('Hygiene', value="0.3069676027888867")
+movement = st.text_input('Movement', value="0.8136175955953819")
+
+# Converting string inputs to float after they are entered
+try:
+    fatigue = float(fatigue)
+    slowing = float(slowing)
+    pain = float(pain)
+    hygiene = float(hygiene)
+    movement = float(movement)
+except ValueError:
+    st.error("Please enter valid float values.")
+
+
+
 
 # Prepare the input data as a DataFrame
 input_data = pd.DataFrame({
@@ -43,7 +56,22 @@ if st.button('Predict'):
     # Display the prediction result
     st.subheader('Prediction Result:')
     # st.write(f'The predicted value is: {prediction[0]}')
-    if(prediction>2):
-        st.write('On the Schiznophrenic spectrum')
+    # if(prediction==1):
+    #     st.write('Not On the Schiznophrenic spectrum')
+    # else:
+    #     st.write('Not on the Schiznophrenic spectrum')
+    if(prediction==1):
+        st.write("Elevated proneness")
+    elif(prediction==2) :
+        st.write("High Proness")
+    elif(prediction==3):
+        st.write("Moderate Proneness")
+    elif(prediction==4):
+        st.write("Low proneness/not on the spectrum")
     else:
-        st.write('Not on the Schiznophrenic spectrum')
+        st.write("Very High Proneness")
+
+
+        
+        
+
