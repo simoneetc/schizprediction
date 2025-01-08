@@ -6,7 +6,7 @@ print(sklearn.__version__)
 # Load the saved pipeline model
 
 
-with open('/voting_pipeline_model.pkl', 'rb') as f:
+with open('voting_pipeline_model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Streamlit app header
